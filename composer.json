@@ -1,0 +1,19 @@
+{
+    "name": "faran/lucid",
+    "type": "library",
+    "bin": ["lucid"],
+    "license": "MIT",
+    "description": "Just a test package",
+    "autoload": {
+        "psr-4": {
+            "Lucid\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Faran Ali",
+            "email": "faranaliahmed@gmail.com"
+        }
+    ],
+    "require": {}
+}

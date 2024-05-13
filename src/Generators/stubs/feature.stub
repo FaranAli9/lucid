@@ -1,0 +1,12 @@
+<?php
+
+namespace {{namespace}};
+
+use Lucid\Units\Feature;
+
+class {{name}} extends Feature
+{
+    public function handle()
+    {
+    }
+}

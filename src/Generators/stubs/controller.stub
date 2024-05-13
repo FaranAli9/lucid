@@ -1,0 +1,10 @@
+<?php
+
+namespace {{namespace}};
+
+use Lucid\Units\Controller;
+
+class {{name}} extends Controller
+{
+
+}

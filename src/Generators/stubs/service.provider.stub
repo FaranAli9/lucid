@@ -1,0 +1,19 @@
+<?php
+
+namespace {{namespace}}\Services\{{name}}\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class {{name}}ServiceProvider extends ServiceProvider
+{
+
+    /**
+     * Register the {{name}} service provider.
+     *
+     * @return void
+     */
+    public function register(): void
+    {
+        $this->app->register(RouteServiceProvider::class);
+    }
+}

@@ -1,0 +1,19 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| {{name}} Service Routes
+|--------------------------------------------------------------------------
+| This file contains the routes specific to the {{name}} service.
+| Each service within the application has its own routes file to organize
+| and manage its endpoints separately. These routes define the API
+| endpoints and their corresponding controller actions for the
+| {{name}} service. The routes in this file are prefixed with
+| /api/{{slug}} to namespace them under the service.
+|
+*/
+
+// Prefix: /api/{{slug}}
+
