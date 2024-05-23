@@ -13,18 +13,13 @@ class FeatureMakeCommand extends LucidCommand
 
     /**
      * The console command name.
-     *
-     * @var string
      */
     protected string $name = 'make:feature';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Create a new Feature';
-
 
     /**
      * @throws Exception

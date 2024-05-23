@@ -2,13 +2,9 @@
 
 namespace Lucid\Units;
 
-use Illuminate\Bus\Dispatcher;
+use Lucid\Traits\UnitDispatcher;
 
 abstract class Feature
 {
-
-    public function run($unit)
-    {
-        return app(Dispatcher::class)->dispatch($unit);
-    }
+    use UnitDispatcher;
 }

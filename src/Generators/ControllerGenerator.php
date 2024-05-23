@@ -24,7 +24,6 @@ class ControllerGenerator extends FileGenerator
 
     protected function getStubFilePath(): string
     {
-        return __DIR__ . '/stubs/controller.stub';
+        return __DIR__.'/stubs/controller.stub';
     }
-
 }

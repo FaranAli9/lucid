@@ -7,5 +7,4 @@ use Lucid\Traits\ServesFeature;
 abstract class Controller
 {
     use ServesFeature;
-
 }

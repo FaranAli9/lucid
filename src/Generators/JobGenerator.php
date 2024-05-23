@@ -13,6 +13,7 @@ class JobGenerator extends FileGenerator
         parent::__construct(self::JOB, $name, $service);
 
     }
+
     protected function getUnitPathElements(): array
     {
         return [
@@ -22,6 +23,6 @@ class JobGenerator extends FileGenerator
 
     protected function getStubFilePath(): string
     {
-        return __DIR__ . '/stubs/job.stub';
+        return __DIR__.'/stubs/job.stub';
     }
 }

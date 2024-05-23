@@ -13,18 +13,13 @@ class ControllerMakeCommand extends LucidCommand
 
     /**
      * The console command name.
-     *
-     * @var string
      */
     protected string $name = 'make:controller';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Create a new Controller';
-
 
     /**
      * @throws Exception

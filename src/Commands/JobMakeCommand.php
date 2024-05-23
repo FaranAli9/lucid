@@ -3,7 +3,6 @@
 namespace Lucid\Commands;
 
 use Exception;
-use Lucid\Generators\ControllerGenerator;
 use Lucid\Generators\JobGenerator;
 use Lucid\Traits\Finder;
 use Symfony\Component\Console\Input\InputArgument;
@@ -14,18 +13,13 @@ class JobMakeCommand extends LucidCommand
 
     /**
      * The console command name.
-     *
-     * @var string
      */
     protected string $name = 'make:job';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Create a new Job';
-
 
     /**
      * @throws Exception

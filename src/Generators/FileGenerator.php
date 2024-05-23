@@ -12,19 +12,24 @@ abstract class FileGenerator extends Generator
     use Finder;
 
     private string $type;
+
     private string $name;
-    private array  $elements;
+
+    private array $elements;
+
     private string $unit;
 
     protected const CONTROLLER = 'controller';
+
     protected const FEATURE = 'feature';
+
     protected const JOB = 'job';
 
     public function __construct(string $type, string $name, string $unit)
     {
         $this->type = $type;
 
-        if (!Str::endsWith($name, ucfirst($type))) {
+        if (! Str::endsWith($name, ucfirst($type))) {
             $name .= ucfirst($type);
         }
 
@@ -35,18 +40,17 @@ abstract class FileGenerator extends Generator
     }
 
     /**
-     * @return array
      * @throws Exception
      */
     public function generate(): array
     {
-        if ($this->isServiceUnit() && !$this->serviceExists($this->unit)) {
+        if ($this->isServiceUnit() && ! $this->serviceExists($this->unit)) {
             throw new ServiceDoesNotExistException("$this->unit service does not exist.");
         }
 
         $path = $this->createFilePath();
 
-        if(file_exists($path)) {
+        if (file_exists($path)) {
             throw new Exception('File already exists.');
         }
 
@@ -65,6 +69,7 @@ abstract class FileGenerator extends Generator
     protected function generateContentFromStub(): string
     {
         $contents = file_get_contents($this->getStubFilePath());
+
         return Str::replace(
             ['{{namespace}}', '{{name}}'],
             [$this->getNamespace(), $this->name],
@@ -84,9 +89,8 @@ abstract class FileGenerator extends Generator
         if ($this->isServiceUnit()) {
             $base = $this->findServicesRootPath();
         } else {
-            $base = $this->findSourceRoot() . DIRECTORY_SEPARATOR . 'Domains';
+            $base = $this->findSourceRoot().DIRECTORY_SEPARATOR.'Domains';
         }
-
 
         $path = $this->createRecursiveDirectories($base, [
             $this->unit,
@@ -94,7 +98,7 @@ abstract class FileGenerator extends Generator
             ...$this->elements,
         ]);
 
-        return $path . DIRECTORY_SEPARATOR . $this->name . '.php';
+        return $path.DIRECTORY_SEPARATOR.$this->name.'.php';
     }
 
     /**
@@ -105,8 +109,9 @@ abstract class FileGenerator extends Generator
         if ($this->isServiceUnit()) {
             $base = $this->findServiceNamespace($this->unit);
         } else {
-            $base = $this->findRootNamespace() . '\\' . 'Domains' . '\\' . $this->unit;
+            $base = $this->findRootNamespace().'\\'.'Domains'.'\\'.$this->unit;
         }
+
         return implode('\\', [
             $base,
             ...$this->getUnitPathElements(),

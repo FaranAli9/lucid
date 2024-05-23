@@ -23,7 +23,6 @@ class FeatureGenerator extends FileGenerator
 
     protected function getStubFilePath(): string
     {
-        return __DIR__ . '/stubs/feature.stub';
+        return __DIR__.'/stubs/feature.stub';
     }
-
 }

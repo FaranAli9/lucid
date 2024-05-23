@@ -10,20 +10,16 @@ use Symfony\Component\Console\Input\InputArgument;
 class ServiceMakeCommand extends LucidCommand
 {
     use Finder;
+
     /**
      * The console command name.
-     *
-     * @var string
      */
     protected string $name = 'make:service';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected string $description = 'Create a new Service';
-
 
     /**
      * @throws Exception
@@ -34,15 +30,15 @@ class ServiceMakeCommand extends LucidCommand
 
         try {
             $meta = $generator->generate();
-            $this->info($meta['name'] . " Service created successfully.");
+            $this->info($meta['name'].' Service created successfully.');
             $this->info('Activate it by adding '.
                 '<comment>'.$meta['provider']."::class</comment>\n".
-                "in <comment>bootstrap/providers.php</comment>"
+                'in <comment>bootstrap/providers.php</comment>'
             );
-        }
-        catch(Exception $e) {
+        } catch (Exception $e) {
             $this->error($e->getMessage());
         }
+
         return 0;
     }
 

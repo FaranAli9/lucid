@@ -11,7 +11,7 @@ class ServiceGenerator extends Generator
 {
     use Finder;
 
-    private array  $directories = [
+    private array $directories = [
         'Http/',
         'Http/Controllers/',
         'Http/Middleware/',
@@ -20,6 +20,7 @@ class ServiceGenerator extends Generator
         'Operations/',
         'routes',
     ];
+
     private string $name;
 
     private string $servicePath;
@@ -34,13 +35,12 @@ class ServiceGenerator extends Generator
     public function __construct(string $name)
     {
         $this->name        = Str::studly($name);
-        $this->servicePath = app_path('Services' . DIRECTORY_SEPARATOR . $name);
+        $this->servicePath = app_path('Services'.DIRECTORY_SEPARATOR.$name);
         $this->slug        = Str::kebab($this->name);
         $this->namespace   = $this->findNamespace();
     }
 
     /**
-     * @return array
      * @throws ServiceAlreadyExistsException
      */
     public function generate(): array
@@ -52,7 +52,7 @@ class ServiceGenerator extends Generator
 
         return [
             'name'     => $this->name,
-            'provider' => implode('', [$this->namespace, '\\Services\\', $this->name, '\\Providers\\', $this->name, 'ServiceProvider'])
+            'provider' => implode('', [$this->namespace, '\\Services\\', $this->name, '\\Providers\\', $this->name, 'ServiceProvider']),
         ];
 
     }
@@ -64,9 +64,9 @@ class ServiceGenerator extends Generator
     {
         $root = $this->servicePath;
         foreach ($this->directories as $directory) {
-            $path = $root . DIRECTORY_SEPARATOR . $directory;
+            $path = $root.DIRECTORY_SEPARATOR.$directory;
             $this->createDirectory($path);
-            $this->createFile($path . DIRECTORY_SEPARATOR . '.gitkeep', '');
+            $this->createFile($path.DIRECTORY_SEPARATOR.'.gitkeep', '');
         }
     }
 
@@ -80,15 +80,15 @@ class ServiceGenerator extends Generator
 
     public function createServiceProviders(): void
     {
-        $root = $this->servicePath . DIRECTORY_SEPARATOR . 'Providers' . DIRECTORY_SEPARATOR;
+        $root = $this->servicePath.DIRECTORY_SEPARATOR.'Providers'.DIRECTORY_SEPARATOR;
         $this->createRegistrationServiceProvider($root);
         $this->createRouteServiceProvider($root);
     }
 
     private function createRegistrationServiceProvider($root): void
     {
-        $path     = $root . $this->name . 'ServiceProvider.php';
-        $contents = file_get_contents(__DIR__ . '/stubs/service.provider.stub');
+        $path     = $root.$this->name.'ServiceProvider.php';
+        $contents = file_get_contents(__DIR__.'/stubs/service.provider.stub');
 
         $contents = Str::replace(['{{namespace}}', '{{name}}'], [$this->namespace, $this->name], $contents);
         $this->createFile($path, $contents);
@@ -96,8 +96,8 @@ class ServiceGenerator extends Generator
 
     private function createRouteServiceProvider($root): void
     {
-        $path     = $root . 'RouteServiceProvider.php';
-        $contents = file_get_contents(__DIR__ . '/stubs/route.service.provider.stub');
+        $path     = $root.'RouteServiceProvider.php';
+        $contents = file_get_contents(__DIR__.'/stubs/route.service.provider.stub');
         $contents = Str::replace(
             ['{{namespace}}', '{{name}}', '{{slug}}'],
             [$this->namespace, $this->name, $this->slug],
@@ -108,8 +108,8 @@ class ServiceGenerator extends Generator
 
     private function createRoutesFiles(): void
     {
-        $path     = $this->servicePath . DIRECTORY_SEPARATOR . 'routes' . DIRECTORY_SEPARATOR . 'api.php';
-        $contents = file_get_contents(__DIR__ . '/stubs/routes.api.stub');
+        $path     = $this->servicePath.DIRECTORY_SEPARATOR.'routes'.DIRECTORY_SEPARATOR.'api.php';
+        $contents = file_get_contents(__DIR__.'/stubs/routes.api.stub');
         $contents = Str::replace(
             ['{{name}}', '{{slug}}'],
             [$this->name, $this->slug],

@@ -9,15 +9,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class LucidCommand extends Command
 {
     protected InputInterface $input;
+
     protected OutputInterface $output;
 
     protected string $name;
+
     protected string $description;
 
     public function info($message): void
     {
         $this->output->writeln("<info>$message</info>");
     }
+
     public function error($message): void
     {
         $this->output->writeln("<error>$message</error>");
@@ -35,7 +38,7 @@ abstract class LucidCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->input = $input;
+        $this->input  = $input;
         $this->output = $output;
 
         return (int) $this->handle();
@@ -45,7 +48,6 @@ abstract class LucidCommand extends Command
     {
         return $this->input->getArgument($name);
     }
-
 
     abstract public function handle(): int;
 }
